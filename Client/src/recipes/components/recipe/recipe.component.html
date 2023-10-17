@@ -1,14 +1,10 @@
-<div class="row flex-wrap g-3">
-  <div *ngFor="let recipe of recipes" class="col-4">
     <div class="card h-100">
       <div class="card-header">Category</div>
       <div class="card-body">
-        <h5 class="card-title">{{ recipe.title }}</h5>
-        <p class="card-text">Duration: {{ recipe.duration }}</p>
-        <p class="card-text">Ingredients: {{ recipe.ingredients }}</p>
+        <h5 class="card-title">{{ recipe?.title }}</h5>
+        <p class="card-text">Duration: {{ recipe?.duration }}</p>
+        <p class="card-text">Ingredients: {{ recipe?.ingredients }}</p>
         <p class="card-text">Preparation</p>
         <a href="#" class="btn btn-secondary">Vezi tot</a>
       </div>
     </div>
-  </div>
-</div>

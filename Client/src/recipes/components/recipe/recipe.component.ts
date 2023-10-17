@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from 'src/recipes/models/recipe';
 import { recipesData } from '../mock';
 
@@ -9,13 +9,13 @@ import { recipesData } from '../mock';
   styleUrls: []
 })
 export class RecipeComponent implements OnInit {
-  public recipes: Recipe[] = [];
-
+  @Input()
+  public recipe: Recipe | null = null;
+  
   constructor() { }
 
   ngOnInit(): void {
-    console.log("intru aici");
-    this.recipes = recipesData;
+
   }
 
 }

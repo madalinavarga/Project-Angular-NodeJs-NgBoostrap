@@ -1,4 +1,9 @@
-<div class="container">
-  <h1>Recipes page works</h1>
-  <app-recipe></app-recipe>
+<div class="p-4">
+  <h1>Recipes page:</h1>
+  <app-search (filterValueChange)="handleFilterChange($event)"></app-search>
+  <div class="d-flex flex-wrap gap-4">
+    <div *ngFor="let recipe of recipes" class="col-3">
+      <app-recipe [recipe]="recipe"></app-recipe>
+    </div>
+  </div>
 </div>
