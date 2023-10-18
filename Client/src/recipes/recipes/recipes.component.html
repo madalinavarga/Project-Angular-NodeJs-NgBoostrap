@@ -1,0 +1,9 @@
+<div class="p-4 container-fluid">
+  <h1>Recipes page:</h1>
+  <app-search (filterValueChange)="handleFilterChange($event)"></app-search>
+  <div class="row g-3">
+    <div *ngFor="let recipe of recipes" class="col-3">
+      <app-recipe [recipe]="recipe"></app-recipe>
+    </div>
+  </div>
+</div>
