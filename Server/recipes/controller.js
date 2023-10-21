@@ -8,6 +8,7 @@ const getAll = async (req, res) => {
     
     if (query) {
       const result = await recipesTable.find({ title: { $regex: query.title, $options: "i" } });
+      console.log(result)
       return res.status(200).json(result);
     }
 

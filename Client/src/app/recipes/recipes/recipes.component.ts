@@ -21,7 +21,6 @@ export class RecipesComponent implements OnInit {
 
   handleFilterChange(value: string) {
     this.filterRecipes=value;
-    console.log("Ai schimbat valoarea!", value, "filtru",this.filterRecipes);
     this.getAll();
   }
 
