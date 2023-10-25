@@ -5,6 +5,6 @@
         <p class="card-text">Duration: {{ recipe?.duration }}</p>
         <p class="card-text">Ingredients: {{ recipe?.ingredients }}</p>
         <p class="card-text">Preparation</p>
-        <a href="#" class="btn btn-secondary">Vezi tot</a>
+        <a class="btn btn-secondary" (click)="openRecipe(recipe!)">Vezi tot</a>
       </div>
     </div>

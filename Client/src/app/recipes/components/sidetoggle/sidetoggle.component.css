@@ -1,0 +1,8 @@
+.offcanvas-backdrop {
+    background-color: rgba(128, 128, 128, 0.7);
+}
+
+.offcanvas {
+    width: 40%; 
+    max-width: 70%;
+}

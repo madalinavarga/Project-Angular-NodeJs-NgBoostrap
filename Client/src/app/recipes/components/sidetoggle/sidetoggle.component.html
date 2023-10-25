@@ -1,0 +1,40 @@
+<div *ngIf="isOpen" tabindex="-1">
+  <div
+    class="offcanvas offcanvas-end bg-secondary text-white"
+    id="sideMenu"
+    aria-labelledby="sideMenuLabel"
+    [class.show]="isOpen"
+  >
+    <div class="offcanvas-header">
+      <h2 id="sideMenuLabel" class="mb-4">{{ recipe?.title }}</h2>
+    <div *ngIf="isFavorite" (click)="handleFavorites(false)"> FAVORIT Stea</div>
+    <div *ngIf="!isFavorite" (click)="handleFavorites(true)"> NU FAVORIT</div>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        (click)="closeSideToggle()"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body px-4">
+      <div class="my-3">
+        <h4 class="text-dark mb-2">Title</h4>
+        <p>{{ recipe?.title }}</p>
+      </div>
+      <div class="my-3">
+        <h4 class="text-dark mb-2">Duration</h4>
+        <p>{{ recipe?.duration }}</p>
+      </div>
+      <div class="my-3">
+        <h4 class="text-dark mb-2">Ingredients</h4>
+        <li *ngFor="let ingredient of recipe?.ingredients">{{ingredient}}</li>
+      </div>
+      <div class="my-3">
+        <h4 class="text-dark mb-2">Preparation</h4>
+        <p [innerHTML]="formatText(recipe?.preparation)"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="offcanvas-backdrop"></div>
+</div>
