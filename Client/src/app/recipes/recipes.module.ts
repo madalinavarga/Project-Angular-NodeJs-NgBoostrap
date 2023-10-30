@@ -6,6 +6,8 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { SearchComponent } from './components/search/search.component';
 import { SidetoggleComponent } from './components/sidetoggle/sidetoggle.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -13,11 +15,13 @@ import { SidetoggleComponent } from './components/sidetoggle/sidetoggle.componen
     RecipeComponent,
     RecipesComponent,
     SearchComponent,
-    SidetoggleComponent
+    SidetoggleComponent,
+    FavoritesComponent
   ],
   imports: [
     CommonModule,
     RecipesRoutingModule,
+    FontAwesomeModule
   ]
 })
 export class RecipesModule { }

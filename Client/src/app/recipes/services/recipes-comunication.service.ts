@@ -23,7 +23,6 @@ export class RecipesComunicationService {
 
   changeOpenSideToggle(isOpen: boolean) {
     this._isSideToggleOpen.next(isOpen)
-    console.log(this._isSideToggleOpen)
   }
 
   setSelectedRecipe(recipe:Recipe){
