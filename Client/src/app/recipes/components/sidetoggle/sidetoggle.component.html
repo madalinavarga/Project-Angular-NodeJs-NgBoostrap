@@ -7,8 +7,8 @@
   >
     <div class="offcanvas-header">
       <h2 id="sideMenuLabel" class="mb-4">{{ recipe?.title }}</h2>
-    <div *ngIf="isFavorite" (click)="handleFavorites(false)"> FAVORIT Stea</div>
-    <div *ngIf="!isFavorite" (click)="handleFavorites(true)"> NU FAVORIT</div>
+    <div *ngIf="isFavorite" (click)="handleFavorites(false, recipe?._id)"> <fa-icon class="fa-2xl" [icon]="faStar"></fa-icon></div>
+    <div *ngIf="!isFavorite" (click)="handleFavorites(true, recipe?._id)"> <fa-icon class="fa-2xl" [icon]="emptyStar"></fa-icon></div>
       <button
         type="button"
         class="btn-close btn-close-white"

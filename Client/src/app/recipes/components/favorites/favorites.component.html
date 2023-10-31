@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <h1>Favorites:</h1>
+    <div class="row g-3">
+        <div *ngFor="let recipe of recipes" class="col-3">
+          <app-recipe [recipe]="recipe"></app-recipe>
+        </div>
+      </div>
+    <app-sidetoggle></app-sidetoggle>
+</div>

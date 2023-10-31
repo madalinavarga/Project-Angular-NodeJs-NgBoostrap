@@ -19,7 +19,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
