@@ -66,7 +66,6 @@ export class SidetoggleComponent implements OnInit, OnDestroy {
       this.favoriteService.addFavorite(id!)
         .subscribe({
           next: () => {
-            console.log("added")
           },
           error: (err) => {
             console.error(err);

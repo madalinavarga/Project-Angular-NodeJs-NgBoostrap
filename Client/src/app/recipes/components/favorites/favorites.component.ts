@@ -13,7 +13,6 @@ export class FavoritesComponent implements OnInit {
   constructor(private favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
-    console.log("favorites")
     this.favoritesService.getAllFavorites().subscribe({
       next: (response) => {
         this.recipes = response;

@@ -26,7 +26,6 @@ export class FavoritesService {
   }
 
   getFavoriteById(id:string){
-    console.log("I'm in")
     const url = `${this.baseUrl}/${id}`;
     return this.httpClient.get(url);
   }
