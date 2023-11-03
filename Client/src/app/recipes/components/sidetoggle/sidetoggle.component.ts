@@ -4,8 +4,9 @@ import { RecipesComunicationService } from '../../services/recipes-comunication.
 import { Subscription } from 'rxjs';
 import { FavoritesService } from '../../services/favorites.api.service';
 import { Router } from '@angular/router';
-import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as fullStar, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
+import { RecipesApiService } from '../../services/recipes.api.service';
 
 @Component({
   selector: 'app-sidetoggle',
@@ -15,13 +16,16 @@ import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
 export class SidetoggleComponent implements OnInit, OnDestroy {
   public isOpen: boolean = false;
   public recipe: Recipe | null = null;
+  public modiefiedRecipe: Recipe | null = null;
   public isFavorite: boolean = false;
   public faStar = fullStar;
   public emptyStar = emptyStar;
+  public faEdit = faEdit;
+  public isEditMode = false;
 
   private subscription: Subscription | null = null;
 
-  constructor(private recipesComunicationService: RecipesComunicationService, private favoriteService: FavoritesService, private router: Router) { }
+  constructor(private recipesComunicationService: RecipesComunicationService, private favoriteService: FavoritesService, private router: Router, private serviceRecipes: RecipesApiService) { }
 
   ngOnDestroy(): void {
     if (this.subscription) {
@@ -36,6 +40,7 @@ export class SidetoggleComponent implements OnInit, OnDestroy {
 
     this.recipesComunicationService.currentRecipe$.subscribe(recipe => {
       this.recipe = recipe!;
+      this.modiefiedRecipe = recipe!;
       if (this.isOpen) {
         this.favoriteService.getFavoriteById(this.recipe?._id!).subscribe({
           next: (response) => {
@@ -50,6 +55,8 @@ export class SidetoggleComponent implements OnInit, OnDestroy {
         })
       }
     })
+
+    this.modiefiedRecipe = this.recipe;
   }
 
   closeSideToggle() {
@@ -80,5 +87,47 @@ export class SidetoggleComponent implements OnInit, OnDestroy {
       })
     }
     // this.router.navigate(['favorites']);
+  }
+
+  handleEditRecipe(id?: string) {
+    this.isEditMode = true;
+  }
+
+  handleCancel() {
+    this.isEditMode = false;
+  }
+
+  updateInput(recipeField: any, inputType: string) {
+    const newValue = recipeField.target.value;
+
+    switch (inputType) {
+      case 'duration':
+        this.modiefiedRecipe!.duration = newValue;
+        break;
+      case 'ingredients':
+        this.modiefiedRecipe!.ingredients = newValue;
+        break;
+      case 'preparation':
+        this.modiefiedRecipe!.preparation = newValue;
+        break;
+      case 'title':
+        this.modiefiedRecipe!.title = newValue;
+        break;
+      default:
+        console.warn(`Unknown input type: ${inputType}`);
+    }
+  }
+
+  handleUpdateRecipe() {
+    this.serviceRecipes.updateRecipe(this.modiefiedRecipe!).subscribe({
+      next: (response) => {
+        this.recipe = response;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    })
+
+    this.isEditMode = false;
   }
 }

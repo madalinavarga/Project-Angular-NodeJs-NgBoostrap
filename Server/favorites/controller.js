@@ -13,7 +13,6 @@ const getAll = async (req, res) => {
 
 const getIsFavoriteById = async (req, res) => {
   try {
-    console.log("req", req);
     const id = req?.params?.id;
     const recipe = await favoritesTable.findOne({ recipeId: id });
     if (recipe) {

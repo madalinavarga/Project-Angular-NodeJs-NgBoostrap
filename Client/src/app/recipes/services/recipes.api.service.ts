@@ -16,4 +16,9 @@ export class RecipesApiService {
     const params = { title: queryParam };
     return this.http.get<Recipe[]>(this.baseUrl, { params: params });
   }
+
+  updateRecipe(recipe:Recipe){
+    const url = `${this.baseUrl}/${recipe._id}`;
+    return this.http.put<Recipe>(url,recipe);
+  }
 }

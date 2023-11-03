@@ -16,7 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RecipesComponent,
     SearchComponent,
     SidetoggleComponent,
-    FavoritesComponent
+    FavoritesComponent,
   ],
   imports: [
     CommonModule,

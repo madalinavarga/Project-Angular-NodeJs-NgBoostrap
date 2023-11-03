@@ -7,8 +7,21 @@
   >
     <div class="offcanvas-header">
       <h2 id="sideMenuLabel" class="mb-4">{{ recipe?.title }}</h2>
-    <div *ngIf="isFavorite" (click)="handleFavorites(false, recipe?._id)"> <fa-icon class="fa-2xl" [icon]="faStar"></fa-icon></div>
-    <div *ngIf="!isFavorite" (click)="handleFavorites(true, recipe?._id)"> <fa-icon class="fa-2xl" [icon]="emptyStar"></fa-icon></div>
+      <div *ngIf="isFavorite" (click)="handleFavorites(false, recipe?._id)">
+        <fa-icon class="fa-2xl" [icon]="faStar"></fa-icon>
+      </div>
+      <div *ngIf="!isFavorite" (click)="handleFavorites(true, recipe?._id)">
+        <fa-icon class="fa-2xl" [icon]="emptyStar"></fa-icon>
+      </div>
+      <button *ngIf="!isEditMode" (click)="handleEditRecipe(recipe?._id)">
+        Edit <fa-icon [icon]="faEdit"></fa-icon>
+      </button>
+      <button *ngIf="isEditMode" (click)="handleUpdateRecipe()">
+        Save
+      </button>
+      <button *ngIf="isEditMode" (click)="handleCancel()">
+        Cancel
+      </button>
       <button
         type="button"
         class="btn-close btn-close-white"
@@ -19,22 +32,32 @@
     <div class="offcanvas-body px-4">
       <div class="my-3">
         <h4 class="text-dark mb-2">Title</h4>
-        <p>{{ recipe?.title }}</p>
+        <p *ngIf="!isEditMode">{{ recipe?.title }}</p>
+        <input *ngIf="isEditMode" value="{{ recipe?.title }}" (blur)="updateInput($event,'title')"/>
       </div>
       <div class="my-3">
         <h4 class="text-dark mb-2">Duration</h4>
-        <p>{{ recipe?.duration }}</p>
+        <p *ngIf="!isEditMode">{{ recipe?.duration }}</p>
+        <input *ngIf="isEditMode" value="{{ recipe?.duration }}" (blur)="updateInput($event,'duration')" />
       </div>
       <div class="my-3">
         <h4 class="text-dark mb-2">Ingredients</h4>
-        <li *ngFor="let ingredient of recipe?.ingredients">{{ingredient}}</li>
+        <div *ngIf="!isEditMode">
+          <li *ngFor="let ingredient of recipe?.ingredients">
+            {{ ingredient }}
+          </li>
+        </div>
+        <input *ngIf="isEditMode" value="{{ recipe?.ingredients }}" (blur)="updateInput($event,'ingredients')"/>
       </div>
       <div class="my-3">
         <h4 class="text-dark mb-2">Preparation</h4>
-        <p [innerHTML]="formatText(recipe?.preparation)"></p>
+        <p
+          *ngIf="!isEditMode"
+          [innerHTML]="formatText(recipe?.preparation)"
+        ></p>
+        <input *ngIf="isEditMode" value="{{ recipe?.preparation }}" (blur)="updateInput($event,'preparation')"/>
       </div>
     </div>
   </div>
-
   <div class="offcanvas-backdrop"></div>
 </div>
