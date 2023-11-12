@@ -1,0 +1,14 @@
+.contactCard {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw; /* 30% of the viewport width */
+    border: 1px solid grey; /* 1px solid border with grey color */
+    background-color: rgb(118, 162, 147);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for depth */
+    overflow: auto; /* In case the content overflows */
+    border-radius: 8px;
+  }
+  
